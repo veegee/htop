@@ -20,99 +20,6 @@ in the source distribution for its full text.
 #include <execinfo.h>
 #endif
 
-#define ColorPair(i,j) COLOR_PAIR((7-i)*8+j)
-
-#define COLORSCHEME_DEFAULT 0
-#define COLORSCHEME_MONOCHROME 1
-#define COLORSCHEME_BLACKONWHITE 2
-#define COLORSCHEME_BLACKONWHITE2 3
-#define COLORSCHEME_MIDNIGHT 4
-#define COLORSCHEME_BLACKNIGHT 5
-
-#define Black COLOR_BLACK
-#define Red COLOR_RED
-#define Green COLOR_GREEN
-#define Yellow COLOR_YELLOW
-#define Blue COLOR_BLUE
-#define Magenta COLOR_MAGENTA
-#define Cyan COLOR_CYAN
-#define White COLOR_WHITE
-
-//#link curses
-
-/*{
-#include <stdbool.h>
-
-typedef enum ColorElements_ {
-   RESET_COLOR,
-   DEFAULT_COLOR,
-   FUNCTION_BAR,
-   FUNCTION_KEY,
-   FAILED_SEARCH,
-   PANEL_HEADER_FOCUS,
-   PANEL_HEADER_UNFOCUS,
-   PANEL_HIGHLIGHT_FOCUS,
-   PANEL_HIGHLIGHT_UNFOCUS,
-   LARGE_NUMBER,
-   METER_TEXT,
-   METER_VALUE,
-   LED_COLOR,
-   UPTIME,
-   BATTERY,
-   TASKS_RUNNING,
-   SWAP,
-   PROCESS,
-   PROCESS_SHADOW,
-   PROCESS_TAG,
-   PROCESS_MEGABYTES,
-   PROCESS_TREE,
-   PROCESS_R_STATE,
-   PROCESS_D_STATE,
-   PROCESS_BASENAME,
-   PROCESS_HIGH_PRIORITY,
-   PROCESS_LOW_PRIORITY,
-   PROCESS_THREAD,
-   PROCESS_THREAD_BASENAME,
-   BAR_BORDER,
-   BAR_SHADOW,
-   GRAPH_1,
-   GRAPH_2,
-   GRAPH_3,
-   GRAPH_4,
-   GRAPH_5,
-   GRAPH_6,
-   GRAPH_7,
-   GRAPH_8,
-   GRAPH_9,
-   MEMORY_USED,
-   MEMORY_BUFFERS,
-   MEMORY_BUFFERS_TEXT,
-   MEMORY_CACHE,
-   LOAD,
-   LOAD_AVERAGE_FIFTEEN,
-   LOAD_AVERAGE_FIVE,
-   LOAD_AVERAGE_ONE,
-   CHECK_BOX,
-   CHECK_MARK,
-   CHECK_TEXT,
-   CLOCK,
-   HELP_BOLD,
-   HOSTNAME,
-   CPU_NICE,
-   CPU_NICE_TEXT,
-   CPU_NORMAL,
-   CPU_KERNEL,
-   CPU_IOWAIT,
-   CPU_IRQ,
-   CPU_SOFTIRQ,
-   CPU_STEAL,
-   CPU_GUEST,
-   LAST_COLORELEMENT
-} ColorElements;
-
-void CRT_fatalError(const char* note) __attribute__ ((noreturn));
-
-}*/
 
 // TODO: centralize these in Settings.
 
@@ -252,7 +159,7 @@ void CRT_setColors(int colorScheme) {
          for (int j = 0; j < 8; j++)
             init_pair((7-i)*8+j, i, j);
    } else {
-      for (int i = 0; i < 8; i++) 
+      for (int i = 0; i < 8; i++)
          for (int j = 0; j < 8; j++)
             init_pair((7-i)*8+j, i, (j==0?-1:j));
    }
@@ -579,28 +486,28 @@ void CRT_setColors(int colorScheme) {
       CRT_colors[CPU_GUEST] = ColorPair(Cyan,Black);
    } else {
       /* Default */
-      CRT_colors[RESET_COLOR] = ColorPair(White,Black);
-      CRT_colors[DEFAULT_COLOR] = ColorPair(White,Black);
-      CRT_colors[FUNCTION_BAR] = ColorPair(Black,Cyan);
-      CRT_colors[FUNCTION_KEY] = ColorPair(White,Black);
+      CRT_colors[RESET_COLOR] = A_NORMAL;
+      CRT_colors[DEFAULT_COLOR] = A_NORMAL;
+      CRT_colors[FUNCTION_BAR] = ColorPair(Yellow,Black);
+      CRT_colors[FUNCTION_KEY] = ColorPair(Red,Black);
       CRT_colors[PANEL_HEADER_FOCUS] = ColorPair(Black,Green);
       CRT_colors[PANEL_HEADER_UNFOCUS] = ColorPair(Black,Green);
       CRT_colors[PANEL_HIGHLIGHT_FOCUS] = ColorPair(Black,Cyan);
       CRT_colors[PANEL_HIGHLIGHT_UNFOCUS] = ColorPair(Black,White);
-      CRT_colors[FAILED_SEARCH] = ColorPair(Red,Cyan);
+      CRT_colors[FAILED_SEARCH] = ColorPair(Red,Black);
       CRT_colors[UPTIME] = A_BOLD | ColorPair(Cyan,Black);
       CRT_colors[BATTERY] = A_BOLD | ColorPair(Cyan,Black);
       CRT_colors[LARGE_NUMBER] = A_BOLD | ColorPair(Red,Black);
-      CRT_colors[METER_TEXT] = ColorPair(Cyan,Black);
-      CRT_colors[METER_VALUE] = A_BOLD | ColorPair(Cyan,Black);
+      CRT_colors[METER_TEXT] = A_BOLD | ColorPair(White,Black);
+      CRT_colors[METER_VALUE] = A_BOLD | ColorPair(White,Black);
       CRT_colors[LED_COLOR] = ColorPair(Green,Black);
-      CRT_colors[TASKS_RUNNING] = A_BOLD | ColorPair(Green,Black);
+      CRT_colors[TASKS_RUNNING] = ColorPair(Green,Black);
       CRT_colors[PROCESS] = A_NORMAL;
-      CRT_colors[PROCESS_SHADOW] = A_BOLD | ColorPair(Black,Black);
+      CRT_colors[PROCESS_SHADOW] = A_BOLD | ColorPair(Green,Black);
       CRT_colors[PROCESS_TAG] = A_BOLD | ColorPair(Yellow,Black);
       CRT_colors[PROCESS_MEGABYTES] = ColorPair(Cyan,Black);
       CRT_colors[PROCESS_BASENAME] = A_BOLD | ColorPair(Cyan,Black);
-      CRT_colors[PROCESS_TREE] = ColorPair(Cyan,Black);
+      CRT_colors[PROCESS_TREE] = A_BOLD | ColorPair(Green,Black);
       CRT_colors[PROCESS_R_STATE] = ColorPair(Green,Black);
       CRT_colors[PROCESS_D_STATE] = A_BOLD | ColorPair(Red,Black);
       CRT_colors[PROCESS_HIGH_PRIORITY] = ColorPair(Red,Black);
@@ -608,7 +515,7 @@ void CRT_setColors(int colorScheme) {
       CRT_colors[PROCESS_THREAD] = ColorPair(Green,Black);
       CRT_colors[PROCESS_THREAD_BASENAME] = A_BOLD | ColorPair(Green,Black);
       CRT_colors[BAR_BORDER] = A_BOLD;
-      CRT_colors[BAR_SHADOW] = A_BOLD | ColorPair(Black,Black);
+      CRT_colors[BAR_SHADOW] = A_BOLD | ColorPair(Green,Black);
       CRT_colors[SWAP] = ColorPair(Red,Black);
       CRT_colors[GRAPH_1] = A_BOLD | ColorPair(Red,Black);
       CRT_colors[GRAPH_2] = ColorPair(Red,Black);
@@ -623,9 +530,9 @@ void CRT_setColors(int colorScheme) {
       CRT_colors[MEMORY_BUFFERS] = ColorPair(Blue,Black);
       CRT_colors[MEMORY_BUFFERS_TEXT] = A_BOLD | ColorPair(Blue,Black);
       CRT_colors[MEMORY_CACHE] = ColorPair(Yellow,Black);
-      CRT_colors[LOAD_AVERAGE_FIFTEEN] = A_BOLD | ColorPair(Black,Black);
-      CRT_colors[LOAD_AVERAGE_FIVE] = A_NORMAL;
-      CRT_colors[LOAD_AVERAGE_ONE] = A_BOLD;
+      CRT_colors[LOAD_AVERAGE_FIFTEEN] = A_BOLD | ColorPair(White, Black);
+      CRT_colors[LOAD_AVERAGE_FIVE] = ColorPair(White, Black);
+      CRT_colors[LOAD_AVERAGE_ONE] = A_BOLD | ColorPair(Green,Black);
       CRT_colors[LOAD] = A_BOLD;
       CRT_colors[HELP_BOLD] = A_BOLD | ColorPair(Cyan,Black);
       CRT_colors[CLOCK] = A_BOLD;

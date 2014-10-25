@@ -31,17 +31,17 @@ typedef struct CategoriesPanel_ {
 
 }*/
 
-static const char* MetersFunctions[] = {"      ", "      ", "      ", "Type  ", "      ", "      ", "MoveUp", "MoveDn", "Remove", "Done  ", NULL};
+static const char* MetersFunctions[] = {"        ", "        ", "        ", "Type    ", "        ", "        ", "MoveUp  ", "MoveDn  ", "Remove  ", "Done    ", NULL};
 
-static const char* AvailableMetersFunctions[] = {"      ", "      ", "      ", "      ", "Add L ", "Add R ", "      ", "      ", "      ", "Done  ", NULL};
+static const char* AvailableMetersFunctions[] = {"        ", "        ", "        ", "        ", "Add L   ", "Add R   ", "        ", "        ", "        ", "Done    ", NULL};
 
-static const char* DisplayOptionsFunctions[] = {"      ", "      ", "      ", "      ", "      ", "      ", "      ", "      ", "      ", "Done  ", NULL};
+static const char* DisplayOptionsFunctions[] = {"        ", "        ", "        ", "        ", "        ", "        ", "        ", "        ", "        ", "Done    ", NULL};
 
-static const char* ColumnsFunctions[] = {"      ", "      ", "      ", "      ", "      ", "      ", "MoveUp", "MoveDn", "Remove", "Done  ", NULL};
+static const char* ColumnsFunctions[] = {"        ", "        ", "        ", "        ", "        ", "        ", "MoveUp  ", "MoveDn  ", "Remove  ", "Done    ", NULL};
 
-static const char* ColorsFunctions[] = {"      ", "      ", "      ", "      ", "      ", "      ", "      ", "      ", "      ", "Done  ", NULL};
+static const char* ColorsFunctions[] = {"        ", "        ", "        ", "        ", "        ", "        ", "        ", "        ", "        ", "Done    ", NULL};
 
-static const char* AvailableColumnsFunctions[] = {"      ", "      ", "      ", "      ", "Add   ", "      ", "      ", "      ", "      ", "Done  ", NULL};
+static const char* AvailableColumnsFunctions[] = {"        ", "        ", "        ", "        ", "Add       ", "        ", "        ", "        ", "        ", "Done    ", NULL};
 
 static void CategoriesPanel_delete(Object* object) {
    Panel* super = (Panel*) object;

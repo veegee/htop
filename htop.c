@@ -49,8 +49,20 @@ static void printVersionFlag() {
    exit(0);
 }
 
-static const char* defaultFunctions[]  = {"Help  ", "Setup ", "Search", "Filter", "Tree  ", "SortBy", "Nice -", "Nice +", "Kill  ", "Quit  ", NULL};
- 
+static const char* defaultFunctions[] = {
+    "Help    ",
+    "Setup   ",
+    "Search  ",
+    "Filter  ",
+    "Tree    ",
+    "SortBy  ",
+    "Nice-   ",
+    "Nice+   ",
+    "Kill    ",
+    "Quit    ",
+    NULL
+};
+
 static void printHelpFlag() {
    fputs("htop " VERSION " - " COPYRIGHT "\n"
          "Released under the GNU GPL.\n\n"
@@ -273,11 +285,11 @@ static bool setUserOnly(const char* userName, bool* userOnly, uid_t* userId) {
 
 static void setTreeView(ProcessList* pl, FunctionBar* fuBar, bool mode) {
    if (mode) {
-      FunctionBar_setLabel(fuBar, KEY_F(5), "Sorted");
-      FunctionBar_setLabel(fuBar, KEY_F(6), "Collap");
+      FunctionBar_setLabel(fuBar, KEY_F(5), "Sorted  ");
+      FunctionBar_setLabel(fuBar, KEY_F(6), "Collap  ");
    } else {
-      FunctionBar_setLabel(fuBar, KEY_F(5), "Tree  ");
-      FunctionBar_setLabel(fuBar, KEY_F(6), "SortBy");
+      FunctionBar_setLabel(fuBar, KEY_F(5), "Tree    ");
+      FunctionBar_setLabel(fuBar, KEY_F(6), "SortBy  ");
    }
    if (mode != pl->treeView) {
       FunctionBar_draw(fuBar, NULL);
@@ -459,7 +471,7 @@ int main(int argc, char** argv) {
    bool doRefresh = true;
    bool doRecalculate = false;
    Settings* settings;
-   
+
    ProcessList* pl = NULL;
    UsersTable* ut = UsersTable_new();
 
@@ -479,7 +491,7 @@ int main(int argc, char** argv) {
 
    pl = ProcessList_new(ut, pidWhiteList);
    Process_getMaxPid();
-   
+
    Header* header = Header_new(pl);
    settings = Settings_new(pl, header, pl->cpuCount);
    int headerHeight = Header_calculateHeight(header);
@@ -487,17 +499,17 @@ int main(int argc, char** argv) {
    // FIXME: move delay code to settings
    if (delay != -1)
       settings->delay = delay;
-   if (!usecolors) 
+   if (!usecolors)
       settings->colorScheme = COLORSCHEME_MONOCHROME;
 
    CRT_init(settings->delay, settings->colorScheme);
 
    Panel* panel = Panel_new(0, headerHeight, COLS, LINES - headerHeight - 2, false, &Process_class);
    ProcessList_setPanel(pl, panel);
-   
+
    FunctionBar* defaultBar = FunctionBar_new(defaultFunctions, NULL, NULL);
    setTreeView(pl, defaultBar, pl->treeView);
-   
+
    if (sortKey > 0) {
       pl->sortKey = sortKey;
       setTreeView(pl, defaultBar, false);
@@ -507,16 +519,16 @@ int main(int argc, char** argv) {
 
    IncSet* inc = IncSet_new(defaultBar);
 
-   
+
    ProcessList_scan(pl);
    millisleep(75);
    ProcessList_scan(pl);
-   
+
    FunctionBar_draw(defaultBar, NULL);
-   
+
    int acc = 0;
    bool follow = false;
- 
+
    struct timeval tv;
    double oldTime = 0.0;
 
@@ -524,9 +536,9 @@ int main(int argc, char** argv) {
    int closeTimeout = 0;
 
    bool idle = false;
-   
+
    bool collapsed = false;
-   
+
    while (!quit) {
       gettimeofday(&tv, NULL);
       double newTime = ((double)tv.tv_sec * 10) + ((double)tv.tv_usec / 100000);
@@ -550,15 +562,15 @@ int main(int argc, char** argv) {
          idle = false;
       }
       doRefresh = true;
-      
+
       if (pl->treeView) {
          Process* p = (Process*) Panel_getSelected(panel);
          if (p) {
             if (!p->showChildren && !collapsed) {
-               FunctionBar_setLabel(defaultBar, KEY_F(6), "Expand");
+               FunctionBar_setLabel(defaultBar, KEY_F(6), "Expand  ");
                FunctionBar_draw(defaultBar, NULL);
             } else if (p->showChildren && collapsed) {
-               FunctionBar_setLabel(defaultBar, KEY_F(6), "Collap");
+               FunctionBar_setLabel(defaultBar, KEY_F(6), "Collap  ");
                FunctionBar_draw(defaultBar, NULL);
             }
             collapsed = !p->showChildren;
@@ -568,7 +580,7 @@ int main(int argc, char** argv) {
       if (!idle) {
          Panel_draw(panel, true);
       }
-      
+
       int prev = ch;
       if (inc->active)
          move(LINES-1, CRT_cursorX);
@@ -631,7 +643,7 @@ int main(int argc, char** argv) {
          }
          continue;
       }
-      
+
       if (isdigit((char)ch)) {
          if (Panel_size(panel) == 0) continue;
          pid_t pid = ch-48 + acc;
@@ -784,7 +796,7 @@ int main(int argc, char** argv) {
       case '-':
       {
          if (expandCollapse(panel)) {
-            doRecalculate = true;         
+            doRecalculate = true;
             refreshTimeout = 0;
          }
          break;
@@ -947,7 +959,7 @@ int main(int argc, char** argv) {
    mvhline(LINES-1, 0, ' ', COLS);
    attroff(CRT_colors[RESET_COLOR]);
    refresh();
-   
+
    CRT_done();
    if (settings->changed)
       Settings_write(settings);

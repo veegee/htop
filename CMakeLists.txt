@@ -4,8 +4,8 @@ project (htop)
 
 add_definitions (-DNDEBUG -D_XOPEN_SOURCE_EXTENDED -DSYSCONFDIR="/usr/local/etc")
 
-set (CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -pedantic -Wall -Wextra -rdynamic -std=c99 -O3")
-set (CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS} -pedantic -Wall -Wextra -rdynamic std=c99 -g")
+set (CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -Wextra -rdynamic -std=c99 -O3")
+set (CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS} -Wall -Wextra -rdynamic std=c99 -g")
 
 find_library (M_LIB m)
 find_library (NCURSESW_LIB ncursesw)

@@ -1,5 +1,4 @@
-#ifndef HEADER_CRT
-#define HEADER_CRT
+#pragma once
 /*
 htop - CRT.h
 (C) 2004-2011 Hisham H. Muhammad
@@ -7,10 +6,9 @@ Released under the GNU GPL, see the COPYING file
 in the source distribution for its full text.
 */
 
-#ifdef HAVE_EXECINFO_H
-#endif
+#include <stdbool.h>
 
-#define ColorPair(i,j) COLOR_PAIR((7-i)*8+j)
+#define ColorPair(i, j) COLOR_PAIR(j*10 + i)
 
 #define COLORSCHEME_DEFAULT 0
 #define COLORSCHEME_MONOCHROME 1
@@ -19,18 +17,34 @@ in the source distribution for its full text.
 #define COLORSCHEME_MIDNIGHT 4
 #define COLORSCHEME_BLACKNIGHT 5
 
-#define Black COLOR_BLACK
-#define Red COLOR_RED
-#define Green COLOR_GREEN
-#define Yellow COLOR_YELLOW
-#define Blue COLOR_BLUE
+/* colors */
+/*
+#define COLOR_BLACK 0
+#define COLOR_RED   1
+#define COLOR_GREEN 2
+#define COLOR_YELLOW    3
+#define COLOR_BLUE  4
+#define COLOR_MAGENTA   5
+#define COLOR_CYAN  6
+#define COLOR_WHITE 7
+*/
+#define COLOR_RESET 8
+
+#define Black   COLOR_BLACK
+#define Red     COLOR_RED
+#define Green   COLOR_GREEN
+#define Yellow  COLOR_YELLOW
+#define Blue    COLOR_BLUE
 #define Magenta COLOR_MAGENTA
-#define Cyan COLOR_CYAN
-#define White COLOR_WHITE
+#define Cyan    COLOR_CYAN
+#define White   COLOR_WHITE
+#define Reset   COLOR_RESET
 
-//#link curses
 
-#include <stdbool.h>
+/*
+static char *color_table[] = { "BLACK", "RED", "GREEN", "YELLOW ", "BLUE",
+                               "MAGENTA", "CYAN", "WHITE", "RESET" };
+*/
 
 typedef enum ColorElements_ {
    RESET_COLOR,
@@ -133,5 +147,3 @@ void CRT_disableDelay();
 void CRT_enableDelay();
 
 void CRT_setColors(int colorScheme);
-
-#endif

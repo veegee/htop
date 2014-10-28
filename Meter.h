@@ -16,27 +16,27 @@ in the source distribution for its full text.
 
 typedef struct Meter_ Meter;
 
-typedef void(*Meter_Init)(Meter*);
-typedef void(*Meter_Done)(Meter*);
-typedef void(*Meter_UpdateMode)(Meter*, int);
-typedef void(*Meter_SetValues)(Meter*, char*, int);
-typedef void(*Meter_Draw)(Meter*, int, int, int);
+typedef void(*Meter_Init)(Meter *);
+typedef void(*Meter_Done)(Meter *);
+typedef void(*Meter_UpdateMode)(Meter *, int);
+typedef void(*Meter_SetValues)(Meter *, char *, int);
+typedef void(*Meter_Draw)(Meter *, int, int, int);
 
 typedef struct MeterClass_ {
-   ObjectClass super;
-   const Meter_Init init;
-   const Meter_Done done;
-   const Meter_UpdateMode updateMode;
-   const Meter_Draw draw;
-   const Meter_SetValues setValues;
-   const int defaultMode;
-   const double total;
-   const int* attributes;
-   const char* name;
-   const char* uiName;
-   const char* caption;
-   const char maxItems;
-   char curItems;
+    ObjectClass super;
+    const Meter_Init init;
+    const Meter_Done done;
+    const Meter_UpdateMode updateMode;
+    const Meter_Draw draw;
+    const Meter_SetValues setValues;
+    const int defaultMode;
+    const double total;
+    const int *attributes;
+    const char *name;
+    const char *uiName;
+    const char *caption;
+    const char maxItems;
+    char curItems;
 } MeterClass;
 
 #define As_Meter(this_)                ((MeterClass*)((this_)->super.klass))
@@ -56,37 +56,37 @@ typedef struct MeterClass_ {
 #define Meter_uiName(this_)            As_Meter(this_)->uiName
 
 struct Meter_ {
-   Object super;
-   Meter_Draw draw;
-   
-   char* caption;
-   int mode;
-   int param;
-   void* drawData;
-   int h;
-   ProcessList* pl;
-   double* values;
-   double total;
+    Object super;
+    Meter_Draw draw;
+
+    char *caption;
+    int mode;
+    int param;
+    void *drawData;
+    int h;
+    ProcessList *pl;
+    double *values;
+    double total;
 };
 
 typedef struct MeterMode_ {
-   Meter_Draw draw;
-   const char* uiName;
-   int h;
+    Meter_Draw draw;
+    const char *uiName;
+    int h;
 } MeterMode;
 
 typedef enum {
-   CUSTOM_METERMODE = 0,
-   BAR_METERMODE,
-   TEXT_METERMODE,
-   GRAPH_METERMODE,
-   LED_METERMODE,
-   LAST_METERMODE
+    CUSTOM_METERMODE = 0,
+    BAR_METERMODE,
+    TEXT_METERMODE,
+    GRAPH_METERMODE,
+    LED_METERMODE,
+    LAST_METERMODE
 } MeterModeId;
 
 typedef struct GraphData_ {
-   struct timeval time;
-   double values[METER_BUFFER_LEN];
+    struct timeval time;
+    double values[METER_BUFFER_LEN];
 } GraphData;
 
 
@@ -99,17 +99,17 @@ typedef struct GraphData_ {
 
 extern MeterClass Meter_class;
 
-extern MeterClass* Meter_types[];
+extern MeterClass *Meter_types[];
 
-Meter* Meter_new(ProcessList* pl, int param, MeterClass* type);
+Meter *Meter_new(ProcessList *pl, int param, MeterClass *type);
 
-void Meter_delete(Object* cast);
+void Meter_delete(Object *cast);
 
-void Meter_setCaption(Meter* this, const char* caption);
+void Meter_setCaption(Meter *this, const char *caption);
 
-void Meter_setMode(Meter* this, int modeIndex);
+void Meter_setMode(Meter *this, int modeIndex);
 
-ListItem* Meter_toListItem(Meter* this);
+ListItem *Meter_toListItem(Meter *this);
 
 /* ---------- TextMeterMode ---------- */
 
@@ -121,7 +121,7 @@ ListItem* Meter_toListItem(Meter* this);
 
 /* ---------- LEDMeterMode ---------- */
 
-extern MeterMode* Meter_modes[];
+extern MeterMode *Meter_modes[];
 
 /* Blank meter */
 

@@ -14,9 +14,9 @@ This meter written by Ian P. Hands (iphands@gmail.com, ihands@redhat.com).
 #include "Meter.h"
 
 typedef enum ACPresence_ {
-   AC_ABSENT,
-   AC_PRESENT,
-   AC_ERROR
+    AC_ABSENT,
+    AC_PRESENT,
+    AC_ERROR
 } ACPresence;
 
 

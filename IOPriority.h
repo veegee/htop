@@ -8,17 +8,17 @@ htop - IOPriority.h
 Released under the GNU GPL, see the COPYING file
 in the source distribution for its full text.
 
-Based on ionice, 
+Based on ionice,
 Copyright (C) 2005 Jens Axboe <jens@axboe.dk>
 Released under the terms of the GNU General Public License version 2
 */
 
 
 enum {
-   IOPRIO_CLASS_NONE,
-   IOPRIO_CLASS_RT,
-   IOPRIO_CLASS_BE,
-   IOPRIO_CLASS_IDLE,
+    IOPRIO_CLASS_NONE,
+    IOPRIO_CLASS_RT,
+    IOPRIO_CLASS_BE,
+    IOPRIO_CLASS_IDLE,
 };
 
 #define IOPRIO_WHO_PROCESS 1

@@ -13,8 +13,8 @@ in the source distribution for its full text.
 #include "IOPriority.h"
 #include "ListItem.h"
 
-Panel* IOPriorityPanel_new(IOPriority currPrio);
+Panel *IOPriorityPanel_new(IOPriority currPrio);
 
-IOPriority IOPriorityPanel_getIOPriority(Panel* this);
+IOPriority IOPriorityPanel_getIOPriority(Panel *this);
 
 #endif

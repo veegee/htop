@@ -12,27 +12,27 @@ in the source distribution for its full text.
 #include "Object.h"
 
 typedef struct FunctionBar_ {
-   Object super;
-   int size;
-   char** functions;
-   char** keys;
-   int* events;
-   bool staticData;
+    Object super;
+    int size;
+    char **functions;
+    char **keys;
+    int *events;
+    bool staticData;
 } FunctionBar;
 
 
 extern ObjectClass FunctionBar_class;
 
-FunctionBar* FunctionBar_new(const char** functions, const char** keys, int* events);
+FunctionBar *FunctionBar_new(const char **functions, const char **keys, int *events);
 
-void FunctionBar_delete(Object* cast);
+void FunctionBar_delete(Object *cast);
 
-void FunctionBar_setLabel(FunctionBar* this, int event, const char* text);
+void FunctionBar_setLabel(FunctionBar *this, int event, const char *text);
 
-void FunctionBar_draw(const FunctionBar* this, char* buffer);
+void FunctionBar_draw(const FunctionBar *this, char *buffer);
 
-void FunctionBar_drawAttr(const FunctionBar* this, char* buffer, int attr);
+void FunctionBar_drawAttr(const FunctionBar *this, char *buffer, int attr);
 
-int FunctionBar_synthesizeEvent(const FunctionBar* this, int pos);
+int FunctionBar_synthesizeEvent(const FunctionBar *this, int pos);
 
 #endif

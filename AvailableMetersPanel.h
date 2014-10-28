@@ -14,17 +14,17 @@ in the source distribution for its full text.
 #include "ScreenManager.h"
 
 typedef struct AvailableMetersPanel_ {
-   Panel super;
+    Panel super;
 
-   Settings* settings;
-   Panel* leftPanel;
-   Panel* rightPanel;
-   ScreenManager* scr;
+    Settings *settings;
+    Panel *leftPanel;
+    Panel *rightPanel;
+    ScreenManager *scr;
 } AvailableMetersPanel;
 
 
 extern PanelClass AvailableMetersPanel_class;
 
-AvailableMetersPanel* AvailableMetersPanel_new(Settings* settings, Panel* leftMeters, Panel* rightMeters, ScreenManager* scr);
+AvailableMetersPanel *AvailableMetersPanel_new(Settings *settings, Panel *leftMeters, Panel *rightMeters, ScreenManager *scr);
 
 #endif

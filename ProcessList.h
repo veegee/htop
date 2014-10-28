@@ -40,98 +40,98 @@ in the source distribution for its full text.
 #endif
 
 typedef enum TreeStr_ {
-   TREE_STR_HORZ,
-   TREE_STR_VERT,
-   TREE_STR_RTEE,
-   TREE_STR_BEND,
-   TREE_STR_TEND,
-   TREE_STR_OPEN,
-   TREE_STR_SHUT,
-   TREE_STR_COUNT
+    TREE_STR_HORZ,
+    TREE_STR_VERT,
+    TREE_STR_RTEE,
+    TREE_STR_BEND,
+    TREE_STR_TEND,
+    TREE_STR_OPEN,
+    TREE_STR_SHUT,
+    TREE_STR_COUNT
 } TreeStr;
 
 typedef struct CPUData_ {
-   unsigned long long int totalTime;
-   unsigned long long int userTime;
-   unsigned long long int systemTime;
-   unsigned long long int systemAllTime;
-   unsigned long long int idleAllTime;
-   unsigned long long int idleTime;
-   unsigned long long int niceTime;
-   unsigned long long int ioWaitTime;
-   unsigned long long int irqTime;
-   unsigned long long int softIrqTime;
-   unsigned long long int stealTime;
-   unsigned long long int guestTime;
-   
-   unsigned long long int totalPeriod;
-   unsigned long long int userPeriod;
-   unsigned long long int systemPeriod;
-   unsigned long long int systemAllPeriod;
-   unsigned long long int idleAllPeriod;
-   unsigned long long int idlePeriod;
-   unsigned long long int nicePeriod;
-   unsigned long long int ioWaitPeriod;
-   unsigned long long int irqPeriod;
-   unsigned long long int softIrqPeriod;
-   unsigned long long int stealPeriod;
-   unsigned long long int guestPeriod;
+    unsigned long long int totalTime;
+    unsigned long long int userTime;
+    unsigned long long int systemTime;
+    unsigned long long int systemAllTime;
+    unsigned long long int idleAllTime;
+    unsigned long long int idleTime;
+    unsigned long long int niceTime;
+    unsigned long long int ioWaitTime;
+    unsigned long long int irqTime;
+    unsigned long long int softIrqTime;
+    unsigned long long int stealTime;
+    unsigned long long int guestTime;
+
+    unsigned long long int totalPeriod;
+    unsigned long long int userPeriod;
+    unsigned long long int systemPeriod;
+    unsigned long long int systemAllPeriod;
+    unsigned long long int idleAllPeriod;
+    unsigned long long int idlePeriod;
+    unsigned long long int nicePeriod;
+    unsigned long long int ioWaitPeriod;
+    unsigned long long int irqPeriod;
+    unsigned long long int softIrqPeriod;
+    unsigned long long int stealPeriod;
+    unsigned long long int guestPeriod;
 } CPUData;
 
 typedef struct ProcessList_ {
-   const char **treeStr;
-   Vector* processes;
-   Vector* processes2;
-   Hashtable* processTable;
-   UsersTable* usersTable;
+    const char **treeStr;
+    Vector *processes;
+    Vector *processes2;
+    Hashtable *processTable;
+    UsersTable *usersTable;
 
-   Panel* panel;
-   int following;
-   uid_t userId;
-   const char* incFilter;
-   Hashtable* pidWhiteList;
+    Panel *panel;
+    int following;
+    uid_t userId;
+    const char *incFilter;
+    Hashtable *pidWhiteList;
 
-   int cpuCount;
-   int totalTasks;
-   int userlandThreads;
-   int kernelThreads;
-   int runningTasks;
+    int cpuCount;
+    int totalTasks;
+    int userlandThreads;
+    int kernelThreads;
+    int runningTasks;
 
-   #ifdef HAVE_LIBHWLOC
-   hwloc_topology_t topology;
-   bool topologyOk;
-   #endif
-   CPUData* cpus;
+    #ifdef HAVE_LIBHWLOC
+    hwloc_topology_t topology;
+    bool topologyOk;
+    #endif
+    CPUData *cpus;
 
-   unsigned long long int totalMem;
-   unsigned long long int usedMem;
-   unsigned long long int freeMem;
-   unsigned long long int sharedMem;
-   unsigned long long int buffersMem;
-   unsigned long long int cachedMem;
-   unsigned long long int totalSwap;
-   unsigned long long int usedSwap;
-   unsigned long long int freeSwap;
+    unsigned long long int totalMem;
+    unsigned long long int usedMem;
+    unsigned long long int freeMem;
+    unsigned long long int sharedMem;
+    unsigned long long int buffersMem;
+    unsigned long long int cachedMem;
+    unsigned long long int totalSwap;
+    unsigned long long int usedSwap;
+    unsigned long long int freeSwap;
 
-   int flags;
-   ProcessField* fields;
-   ProcessField sortKey;
-   int direction;
-   bool hideThreads;
-   bool shadowOtherUsers;
-   bool showThreadNames;
-   bool showingThreadNames;
-   bool hideKernelThreads;
-   bool hideUserlandThreads;
-   bool treeView;
-   bool highlightBaseName;
-   bool highlightMegabytes;
-   bool highlightThreads;
-   bool detailedCPUTime;
-   bool countCPUsFromZero;
-   bool updateProcessNames;
-   bool accountGuestInCPUMeter;
-   bool userOnly;
+    int flags;
+    ProcessField *fields;
+    ProcessField sortKey;
+    int direction;
+    bool hideThreads;
+    bool shadowOtherUsers;
+    bool showThreadNames;
+    bool showingThreadNames;
+    bool hideKernelThreads;
+    bool hideUserlandThreads;
+    bool treeView;
+    bool highlightBaseName;
+    bool highlightMegabytes;
+    bool highlightThreads;
+    bool detailedCPUTime;
+    bool countCPUsFromZero;
+    bool updateProcessNames;
+    bool accountGuestInCPUMeter;
+    bool userOnly;
 
 } ProcessList;
 
@@ -140,21 +140,21 @@ extern const char *ProcessList_treeStrAscii[TREE_STR_COUNT];
 
 extern const char *ProcessList_treeStrUtf8[TREE_STR_COUNT];
 
-ProcessList* ProcessList_new(UsersTable* usersTable, Hashtable* pidWhiteList);
+ProcessList *ProcessList_new(UsersTable *usersTable, Hashtable *pidWhiteList);
 
-void ProcessList_delete(ProcessList* this);
+void ProcessList_delete(ProcessList *this);
 
-void ProcessList_setPanel(ProcessList* this, Panel* panel);
+void ProcessList_setPanel(ProcessList *this, Panel *panel);
 
-void ProcessList_invertSortOrder(ProcessList* this);
+void ProcessList_invertSortOrder(ProcessList *this);
 
-void ProcessList_printHeader(ProcessList* this, RichString* header);
+void ProcessList_printHeader(ProcessList *this, RichString *header);
 
-Process* ProcessList_get(ProcessList* this, int idx);
+Process *ProcessList_get(ProcessList *this, int idx);
 
-int ProcessList_size(ProcessList* this);
+int ProcessList_size(ProcessList *this);
 
-void ProcessList_sort(ProcessList* this);
+void ProcessList_sort(ProcessList *this);
 
 #ifdef HAVE_TASKSTATS
 
@@ -177,12 +177,12 @@ void ProcessList_sort(ProcessList* this);
 #endif
 
 
-void ProcessList_scan(ProcessList* this);
+void ProcessList_scan(ProcessList *this);
 
-ProcessField ProcessList_keyAt(ProcessList* this, int at);
+ProcessField ProcessList_keyAt(ProcessList *this, int at);
 
-void ProcessList_expandTree(ProcessList* this);
+void ProcessList_expandTree(ProcessList *this);
 
-void ProcessList_rebuildPanel(ProcessList* this, bool flags, int following, bool userOnly, uid_t userId, const char* incFilter);
+void ProcessList_rebuildPanel(ProcessList *this, bool flags, int following, bool userOnly, uid_t userId, const char *incFilter);
 
 #endif

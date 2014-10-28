@@ -12,21 +12,21 @@ in the source distribution for its full text.
 #include "Object.h"
 
 typedef struct ListItem_ {
-   Object super;
-   char* value;
-   int key;
+    Object super;
+    char *value;
+    int key;
 } ListItem;
 
 
 extern ObjectClass ListItem_class;
 
-ListItem* ListItem_new(const char* value, int key);
+ListItem *ListItem_new(const char *value, int key);
 
-void ListItem_append(ListItem* this, const char* text);
+void ListItem_append(ListItem *this, const char *text);
 
-const char* ListItem_getRef(ListItem* this);
+const char *ListItem_getRef(ListItem *this);
 
-long ListItem_compare(const void* cast1, const void* cast2);
+long ListItem_compare(const void *cast1, const void *cast2);
 
 
 #endif

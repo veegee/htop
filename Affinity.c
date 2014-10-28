@@ -19,24 +19,24 @@ typedef struct Affinity_ {
 
 }*/
 
-Affinity* Affinity_new() {
-   Affinity* this = calloc(1, sizeof(Affinity));
-   this->size = 8;
-   this->cpus = calloc(this->size, sizeof(int));
-   return this;
+Affinity *Affinity_new() {
+    Affinity *this = calloc(1, sizeof(Affinity));
+    this->size = 8;
+    this->cpus = calloc(this->size, sizeof(int));
+    return this;
 }
 
-void Affinity_delete(Affinity* this) {
-   free(this->cpus);
-   free(this);
+void Affinity_delete(Affinity *this) {
+    free(this->cpus);
+    free(this);
 }
 
-void Affinity_add(Affinity* this, int id) {
-   if (this->used == this->size) {
-      this->size *= 2;
-      this->cpus = realloc(this->cpus, sizeof(int) * this->size);
-   }
-   this->cpus[this->used] = id;
-   this->used++;
+void Affinity_add(Affinity *this, int id) {
+    if(this->used == this->size) {
+        this->size *= 2;
+        this->cpus = realloc(this->cpus, sizeof(int) * this->size);
+    }
+    this->cpus[this->used] = id;
+    this->used++;
 }
 

@@ -14,39 +14,39 @@ in the source distribution for its full text.
 #include "Header.h"
 
 typedef enum Orientation_ {
-   VERTICAL,
-   HORIZONTAL
+    VERTICAL,
+    HORIZONTAL
 } Orientation;
 
 typedef struct ScreenManager_ {
-   int x1;
-   int y1;
-   int x2;
-   int y2;
-   Orientation orientation;
-   Vector* panels;
-   Vector* fuBars;
-   int panelCount;
-   const FunctionBar* fuBar;
-   const Header* header;
-   time_t lastScan;
-   bool owner;
-   bool allowFocusChange;
+    int x1;
+    int y1;
+    int x2;
+    int y2;
+    Orientation orientation;
+    Vector *panels;
+    Vector *fuBars;
+    int panelCount;
+    const FunctionBar *fuBar;
+    const Header *header;
+    time_t lastScan;
+    bool owner;
+    bool allowFocusChange;
 } ScreenManager;
 
 
-ScreenManager* ScreenManager_new(int x1, int y1, int x2, int y2, Orientation orientation, const Header* header, bool owner);
+ScreenManager *ScreenManager_new(int x1, int y1, int x2, int y2, Orientation orientation, const Header *header, bool owner);
 
-void ScreenManager_delete(ScreenManager* this);
+void ScreenManager_delete(ScreenManager *this);
 
-extern int ScreenManager_size(ScreenManager* this);
+extern int ScreenManager_size(ScreenManager *this);
 
-void ScreenManager_add(ScreenManager* this, Panel* item, FunctionBar* fuBar, int size);
+void ScreenManager_add(ScreenManager *this, Panel *item, FunctionBar *fuBar, int size);
 
-Panel* ScreenManager_remove(ScreenManager* this, int idx);
+Panel *ScreenManager_remove(ScreenManager *this, int idx);
 
-void ScreenManager_resize(ScreenManager* this, int x1, int y1, int x2, int y2);
+void ScreenManager_resize(ScreenManager *this, int x1, int y1, int x2, int y2);
 
-void ScreenManager_run(ScreenManager* this, Panel** lastFocus, int* lastKey);
+void ScreenManager_run(ScreenManager *this, Panel **lastFocus, int *lastKey);
 
 #endif

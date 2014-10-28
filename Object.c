@@ -27,7 +27,7 @@ typedef void(*Object_Delete)(Object*);
 #define Class(class_)                 ((ObjectClass*)(&(class_ ## _class)))
 
 #define AllocThis(class_) (class_*) malloc(sizeof(class_)); Object_setClass(this, Class(class_));
- 
+
 typedef struct ObjectClass_ {
    const void* extends;
    const Object_Display display;
@@ -42,21 +42,21 @@ struct Object_ {
 }*/
 
 ObjectClass Object_class = {
-   .extends = NULL
+    .extends = NULL
 };
 
 #ifdef DEBUG
 
-bool Object_isA(Object* o, const ObjectClass* klass) {
-   if (!o)
-      return false;
-   const ObjectClass* type = o->klass;
-   while (type) {
-      if (type == klass)
-         return true;
-      type = type->extends;
-   }
-   return false;
+bool Object_isA(Object *o, const ObjectClass *klass) {
+    if(!o)
+        return false;
+    const ObjectClass *type = o->klass;
+    while(type) {
+        if(type == klass)
+            return true;
+        type = type->extends;
+    }
+    return false;
 }
 
 #endif

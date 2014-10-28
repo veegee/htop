@@ -25,46 +25,46 @@ in the source distribution for its full text.
 #define GIGABYTE 1048576
 
 int SwapMeter_attributes[] = {
-   SWAP
+    SWAP
 };
 
 /* NOTE: Value is in kilobytes */
-static void SwapMeter_humanNumber(char* buffer, const long int* value) {
-   sprintf(buffer, "%ldM ", *value / MEGABYTE);
+static void SwapMeter_humanNumber(char *buffer, const long int *value) {
+    sprintf(buffer, "%ldM ", *value / MEGABYTE);
 }
 
-static void SwapMeter_setValues(Meter* this, char* buffer, int len) {
-   long int usedSwap = this->pl->usedSwap;
-   this->total = this->pl->totalSwap;
-   this->values[0] = usedSwap;
+static void SwapMeter_setValues(Meter *this, char *buffer, int len) {
+    long int usedSwap = this->pl->usedSwap;
+    this->total = this->pl->totalSwap;
+    this->values[0] = usedSwap;
 
-   snprintf(buffer, len, "%ld/%ldMB", (long int) usedSwap / MEGABYTE, (long int) this->total / MEGABYTE);
+    snprintf(buffer, len, "%ld/%ldMB", (long int) usedSwap / MEGABYTE, (long int) this->total / MEGABYTE);
 }
 
-static void SwapMeter_display(Object* cast, RichString* out) {
-   char buffer[50];
-   Meter* this = (Meter*)cast;
-   long int swap = (long int) this->values[0];
-   long int total = (long int) this->total;
-   RichString_write(out, CRT_colors[METER_TEXT], ":");
-   SwapMeter_humanNumber(buffer, &total);
-   RichString_append(out, CRT_colors[METER_VALUE], buffer);
-   SwapMeter_humanNumber(buffer, &swap);
-   RichString_append(out, CRT_colors[METER_TEXT], "used:");
-   RichString_append(out, CRT_colors[METER_VALUE], buffer);
+static void SwapMeter_display(Object *cast, RichString *out) {
+    char buffer[50];
+    Meter *this = (Meter *)cast;
+    long int swap = (long int) this->values[0];
+    long int total = (long int) this->total;
+    RichString_write(out, CRT_colors[METER_TEXT], ":");
+    SwapMeter_humanNumber(buffer, &total);
+    RichString_append(out, CRT_colors[METER_VALUE], buffer);
+    SwapMeter_humanNumber(buffer, &swap);
+    RichString_append(out, CRT_colors[METER_TEXT], "used:");
+    RichString_append(out, CRT_colors[METER_VALUE], buffer);
 }
 
 MeterClass SwapMeter_class = {
-   .super = {
-      .extends = Class(Meter),
-      .delete = Meter_delete,
-      .display = SwapMeter_display,
-   },
-   .setValues = SwapMeter_setValues, 
-   .defaultMode = BAR_METERMODE,
-   .total = 100.0,
-   .attributes = SwapMeter_attributes,
-   .name = "Swap",
-   .uiName = "Swap",
-   .caption = "Swp"
+    .super = {
+        .extends = Class(Meter),
+        .delete = Meter_delete,
+        .display = SwapMeter_display,
+    },
+    .setValues = SwapMeter_setValues,
+    .defaultMode = BAR_METERMODE,
+    .total = 100.0,
+    .attributes = SwapMeter_attributes,
+    .name = "Swap",
+    .uiName = "Swap",
+    .caption = "Swp"
 };

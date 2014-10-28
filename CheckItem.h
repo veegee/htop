@@ -12,19 +12,19 @@ in the source distribution for its full text.
 #include "Object.h"
 
 typedef struct CheckItem_ {
-   Object super;
-   char* text;
-   bool* ref;
-   bool value;
+    Object super;
+    char *text;
+    bool *ref;
+    bool value;
 } CheckItem;
 
 
 extern ObjectClass CheckItem_class;
 
-CheckItem* CheckItem_new(char* text, bool* ref, bool value);
+CheckItem *CheckItem_new(char *text, bool *ref, bool value);
 
-void CheckItem_set(CheckItem* this, bool value);
+void CheckItem_set(CheckItem *this, bool value);
 
-bool CheckItem_get(CheckItem* this);
+bool CheckItem_get(CheckItem *this);
 
 #endif

@@ -26,52 +26,52 @@ typedef struct ListItem_ {
 
 }*/
 
-static void ListItem_delete(Object* cast) {
-   ListItem* this = (ListItem*)cast;
-   free(this->value);
-   free(this);
+static void ListItem_delete(Object *cast) {
+    ListItem *this = (ListItem *)cast;
+    free(this->value);
+    free(this);
 }
 
-static void ListItem_display(Object* cast, RichString* out) {
-   ListItem* this = (ListItem*)cast;
-   assert (this != NULL);
-   /*
-   int len = strlen(this->value)+1;
-   char buffer[len+1];
-   snprintf(buffer, len, "%s", this->value);
-   */
-   RichString_write(out, CRT_colors[DEFAULT_COLOR], this->value/*buffer*/);
+static void ListItem_display(Object *cast, RichString *out) {
+    ListItem *this = (ListItem *)cast;
+    assert(this != NULL);
+    /*
+    int len = strlen(this->value)+1;
+    char buffer[len+1];
+    snprintf(buffer, len, "%s", this->value);
+    */
+    RichString_write(out, CRT_colors[DEFAULT_COLOR], this->value/*buffer*/);
 }
 
 ObjectClass ListItem_class = {
-   .display = ListItem_display,
-   .delete = ListItem_delete,
-   .compare = ListItem_compare
+    .display = ListItem_display,
+    .delete = ListItem_delete,
+    .compare = ListItem_compare
 };
 
-ListItem* ListItem_new(const char* value, int key) {
-   ListItem* this = AllocThis(ListItem);
-   this->value = strdup(value);
-   this->key = key;
-   return this;
+ListItem *ListItem_new(const char *value, int key) {
+    ListItem *this = AllocThis(ListItem);
+    this->value = strdup(value);
+    this->key = key;
+    return this;
 }
 
-void ListItem_append(ListItem* this, const char* text) {
-   int oldLen = strlen(this->value);
-   int textLen = strlen(text);
-   int newLen = strlen(this->value) + textLen;
-   this->value = realloc(this->value, newLen + 1);
-   memcpy(this->value + oldLen, text, textLen);
-   this->value[newLen] = '\0';
+void ListItem_append(ListItem *this, const char *text) {
+    int oldLen = strlen(this->value);
+    int textLen = strlen(text);
+    int newLen = strlen(this->value) + textLen;
+    this->value = realloc(this->value, newLen + 1);
+    memcpy(this->value + oldLen, text, textLen);
+    this->value[newLen] = '\0';
 }
 
-const char* ListItem_getRef(ListItem* this) {
-   return this->value;
+const char *ListItem_getRef(ListItem *this) {
+    return this->value;
 }
 
-long ListItem_compare(const void* cast1, const void* cast2) {
-   ListItem* obj1 = (ListItem*) cast1;
-   ListItem* obj2 = (ListItem*) cast2;
-   return strcmp(obj1->value, obj2->value);
+long ListItem_compare(const void *cast1, const void *cast2) {
+    ListItem *obj1 = (ListItem *) cast1;
+    ListItem *obj2 = (ListItem *) cast2;
+    return strcmp(obj1->value, obj2->value);
 }
 

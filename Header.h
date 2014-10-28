@@ -13,17 +13,17 @@ in the source distribution for its full text.
 #include "Meter.h"
 
 typedef enum HeaderSide_ {
-   LEFT_HEADER,
-   RIGHT_HEADER
+    LEFT_HEADER,
+    RIGHT_HEADER
 } HeaderSide;
 
 typedef struct Header_ {
-   Vector* leftMeters;
-   Vector* rightMeters;
-   ProcessList* pl;
-   int height;
-   int pad;
-   bool margin;
+    Vector *leftMeters;
+    Vector *rightMeters;
+    ProcessList *pl;
+    int height;
+    int pad;
+    bool margin;
 } Header;
 
 
@@ -31,28 +31,28 @@ typedef struct Header_ {
 #define MAX(a,b) ((a)>(b)?(a):(b))
 #endif
 
-Header* Header_new(ProcessList* pl);
+Header *Header_new(ProcessList *pl);
 
-void Header_delete(Header* this);
+void Header_delete(Header *this);
 
-void Header_createMeter(Header* this, char* name, HeaderSide side);
+void Header_createMeter(Header *this, char *name, HeaderSide side);
 
-void Header_setMode(Header* this, int i, MeterModeId mode, HeaderSide side);
+void Header_setMode(Header *this, int i, MeterModeId mode, HeaderSide side);
 
-Meter* Header_addMeter(Header* this, MeterClass* type, int param, HeaderSide side);
+Meter *Header_addMeter(Header *this, MeterClass *type, int param, HeaderSide side);
 
-int Header_size(Header* this, HeaderSide side);
+int Header_size(Header *this, HeaderSide side);
 
-char* Header_readMeterName(Header* this, int i, HeaderSide side);
+char *Header_readMeterName(Header *this, int i, HeaderSide side);
 
-MeterModeId Header_readMeterMode(Header* this, int i, HeaderSide side);
+MeterModeId Header_readMeterMode(Header *this, int i, HeaderSide side);
 
-void Header_defaultMeters(Header* this, int cpuCount);
+void Header_defaultMeters(Header *this, int cpuCount);
 
-void Header_reinit(Header* this);
+void Header_reinit(Header *this);
 
-void Header_draw(const Header* this);
+void Header_draw(const Header *this);
 
-int Header_calculateHeight(Header* this);
+int Header_calculateHeight(Header *this);
 
 #endif

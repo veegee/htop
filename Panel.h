@@ -17,18 +17,18 @@ in the source distribution for its full text.
 typedef struct Panel_ Panel;
 
 typedef enum HandlerResult_ {
-   HANDLED,
-   IGNORED,
-   BREAK_LOOP
+    HANDLED,
+    IGNORED,
+    BREAK_LOOP
 } HandlerResult;
 
 #define EVENT_SETSELECTED -1
 
-typedef HandlerResult(*Panel_EventHandler)(Panel*, int);
+typedef HandlerResult(*Panel_EventHandler)(Panel *, int);
 
 typedef struct PanelClass_ {
-   const ObjectClass super;
-   const Panel_EventHandler eventHandler;
+    const ObjectClass super;
+    const Panel_EventHandler eventHandler;
 } PanelClass;
 
 #define As_Panel(this_)                ((PanelClass*)((this_)->super.klass))
@@ -36,18 +36,18 @@ typedef struct PanelClass_ {
 #define Panel_eventHandler(this_, ev_) As_Panel(this_)->eventHandler((Panel*)(this_), ev_)
 
 struct Panel_ {
-   Object super;
-   PanelClass* class;
-   int x, y, w, h;
-   WINDOW* window;
-   Vector* items;
-   int selected;
-   int oldSelected;
-   char* eventHandlerBuffer;
-   int scrollV;
-   short scrollH;
-   bool needsRedraw;
-   RichString header;
+    Object super;
+    PanelClass *class;
+    int x, y, w, h;
+    WINDOW *window;
+    Vector *items;
+    int selected;
+    int oldSelected;
+    char *eventHandlerBuffer;
+    int scrollV;
+    short scrollH;
+    bool needsRedraw;
+    RichString header;
 };
 
 
@@ -65,50 +65,50 @@ struct Panel_ {
 
 extern PanelClass Panel_class;
 
-Panel* Panel_new(int x, int y, int w, int h, bool owner, ObjectClass* type);
+Panel *Panel_new(int x, int y, int w, int h, bool owner, ObjectClass *type);
 
-void Panel_delete(Object* cast);
+void Panel_delete(Object *cast);
 
-void Panel_init(Panel* this, int x, int y, int w, int h, ObjectClass* type, bool owner);
+void Panel_init(Panel *this, int x, int y, int w, int h, ObjectClass *type, bool owner);
 
-void Panel_done(Panel* this);
+void Panel_done(Panel *this);
 
-RichString* Panel_getHeader(Panel* this);
+RichString *Panel_getHeader(Panel *this);
 
-extern void Panel_setHeader(Panel* this, const char* header);
+extern void Panel_setHeader(Panel *this, const char *header);
 
-void Panel_move(Panel* this, int x, int y);
+void Panel_move(Panel *this, int x, int y);
 
-void Panel_resize(Panel* this, int w, int h);
+void Panel_resize(Panel *this, int w, int h);
 
-void Panel_prune(Panel* this);
+void Panel_prune(Panel *this);
 
-void Panel_add(Panel* this, Object* o);
+void Panel_add(Panel *this, Object *o);
 
-void Panel_insert(Panel* this, int i, Object* o);
+void Panel_insert(Panel *this, int i, Object *o);
 
-void Panel_set(Panel* this, int i, Object* o);
+void Panel_set(Panel *this, int i, Object *o);
 
-Object* Panel_get(Panel* this, int i);
+Object *Panel_get(Panel *this, int i);
 
-Object* Panel_remove(Panel* this, int i);
+Object *Panel_remove(Panel *this, int i);
 
-Object* Panel_getSelected(Panel* this);
+Object *Panel_getSelected(Panel *this);
 
-void Panel_moveSelectedUp(Panel* this);
+void Panel_moveSelectedUp(Panel *this);
 
-void Panel_moveSelectedDown(Panel* this);
+void Panel_moveSelectedDown(Panel *this);
 
-int Panel_getSelectedIndex(Panel* this);
+int Panel_getSelectedIndex(Panel *this);
 
-int Panel_size(Panel* this);
+int Panel_size(Panel *this);
 
-void Panel_setSelected(Panel* this, int selected);
+void Panel_setSelected(Panel *this, int selected);
 
-void Panel_draw(Panel* this, bool focus);
+void Panel_draw(Panel *this, bool focus);
 
-bool Panel_onKey(Panel* this, int key);
+bool Panel_onKey(Panel *this, int key);
 
-HandlerResult Panel_selectByTyping(Panel* this, int ch);
+HandlerResult Panel_selectByTyping(Panel *this, int ch);
 
 #endif

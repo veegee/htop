@@ -11,17 +11,17 @@ in the source distribution for its full text.
 
 
 typedef struct Affinity_ {
-   int size;
-   int used;
-   int* cpus;
+    int size;
+    int used;
+    int *cpus;
 } Affinity;
 
 
-Affinity* Affinity_new();
+Affinity *Affinity_new();
 
-void Affinity_delete(Affinity* this);
+void Affinity_delete(Affinity *this);
 
-void Affinity_add(Affinity* this, int id);
+void Affinity_add(Affinity *this, int id);
 
 
 #endif

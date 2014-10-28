@@ -14,20 +14,20 @@ in the source distribution for its full text.
 #include "ScreenManager.h"
 
 typedef struct ColumnsPanel_ {
-   Panel super;
+    Panel super;
 
-   Settings* settings;
-   ScreenManager* scr;
+    Settings *settings;
+    ScreenManager *scr;
 } ColumnsPanel;
 
 
 extern PanelClass ColumnsPanel_class;
 
-ColumnsPanel* ColumnsPanel_new(Settings* settings, ScreenManager* scr);
+ColumnsPanel *ColumnsPanel_new(Settings *settings, ScreenManager *scr);
 
-int ColumnsPanel_fieldNameToIndex(const char* name);
+int ColumnsPanel_fieldNameToIndex(const char *name);
 
-void ColumnsPanel_update(Panel* super);
+void ColumnsPanel_update(Panel *super);
 
 
 #endif

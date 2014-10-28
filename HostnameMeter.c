@@ -16,24 +16,24 @@ in the source distribution for its full text.
 }*/
 
 int HostnameMeter_attributes[] = {
-   HOSTNAME
+    HOSTNAME
 };
 
-static void HostnameMeter_setValues(Meter* this, char* buffer, int size) {
-   (void) this;
-   gethostname(buffer, size-1);
+static void HostnameMeter_setValues(Meter *this, char *buffer, int size) {
+    (void) this;
+    gethostname(buffer, size - 1);
 }
 
 MeterClass HostnameMeter_class = {
-   .super = {
-      .extends = Class(Meter),
-      .delete = Meter_delete
-   },
-   .setValues = HostnameMeter_setValues, 
-   .defaultMode = TEXT_METERMODE,
-   .total = 100.0,
-   .attributes = HostnameMeter_attributes,
-   .name = "Hostname",
-   .uiName = "Hostname",
-   .caption = "Hostname: ",
+    .super = {
+        .extends = Class(Meter),
+        .delete = Meter_delete
+    },
+    .setValues = HostnameMeter_setValues,
+    .defaultMode = TEXT_METERMODE,
+    .total = 100.0,
+    .attributes = HostnameMeter_attributes,
+    .name = "Hostname",
+    .uiName = "Hostname",
+    .caption = "Hostname: ",
 };

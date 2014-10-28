@@ -17,40 +17,40 @@ in the source distribution for its full text.
 #define INCMODE_MAX 40
 
 typedef enum {
-   INC_SEARCH = 0,
-   INC_FILTER = 1
+    INC_SEARCH = 0,
+    INC_FILTER = 1
 } IncType;
 
 #define IncSet_filter(inc_) (inc_->filtering ? inc_->modes[INC_FILTER].buffer : NULL)
 
 typedef struct IncMode_ {
-   char buffer[INCMODE_MAX+1];
-   int index;
-   FunctionBar* bar;
-   bool isFilter;
+    char buffer[INCMODE_MAX + 1];
+    int index;
+    FunctionBar *bar;
+    bool isFilter;
 } IncMode;
 
 typedef struct IncSet_ {
-   IncMode modes[2];
-   IncMode* active;
-   FunctionBar* bar;
-   FunctionBar* defaultBar;
-   bool filtering;
+    IncMode modes[2];
+    IncMode *active;
+    FunctionBar *bar;
+    FunctionBar *defaultBar;
+    bool filtering;
 } IncSet;
 
-typedef const char* (*IncMode_GetPanelValue)(Panel*, int);
+typedef const char *(*IncMode_GetPanelValue)(Panel *, int);
 
 
-IncSet* IncSet_new(FunctionBar* bar);
+IncSet *IncSet_new(FunctionBar *bar);
 
-void IncSet_delete(IncSet* this);
+void IncSet_delete(IncSet *this);
 
-bool IncSet_handleKey(IncSet* this, int ch, Panel* panel, IncMode_GetPanelValue getPanelValue, Vector* lines);
+bool IncSet_handleKey(IncSet *this, int ch, Panel *panel, IncMode_GetPanelValue getPanelValue, Vector *lines);
 
-const char* IncSet_getListItemValue(Panel* panel, int i);
+const char *IncSet_getListItemValue(Panel *panel, int i);
 
-void IncSet_activate(IncSet* this, IncType type);
+void IncSet_activate(IncSet *this, IncType type);
 
-void IncSet_drawBar(IncSet* this);
+void IncSet_drawBar(IncSet *this);
 
 #endif

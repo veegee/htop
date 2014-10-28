@@ -11,11 +11,11 @@ in the source distribution for its full text.
 
 
 typedef struct SignalItem_ {
-   const char* name;
-   int number;
+    const char *name;
+    int number;
 } SignalItem;
 
 
-Panel* SignalsPanel_new();
+Panel *SignalsPanel_new();
 
 #endif

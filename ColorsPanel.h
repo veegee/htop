@@ -20,15 +20,15 @@ in the source distribution for its full text.
 #include "ScreenManager.h"
 
 typedef struct ColorsPanel_ {
-   Panel super;
+    Panel super;
 
-   Settings* settings;
-   ScreenManager* scr;
+    Settings *settings;
+    ScreenManager *scr;
 } ColorsPanel;
 
 
 extern PanelClass ColorsPanel_class;
 
-ColorsPanel* ColorsPanel_new(Settings* settings, ScreenManager* scr);
+ColorsPanel *ColorsPanel_new(Settings *settings, ScreenManager *scr);
 
 #endif

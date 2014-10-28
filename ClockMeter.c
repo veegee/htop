@@ -16,27 +16,27 @@ in the source distribution for its full text.
 }*/
 
 int ClockMeter_attributes[] = {
-   CLOCK
+    CLOCK
 };
 
-static void ClockMeter_setValues(Meter* this, char* buffer, int size) {
-   time_t t = time(NULL);
-   struct tm result;
-   struct tm *lt = localtime_r(&t, &result);
-   this->values[0] = lt->tm_hour * 60 + lt->tm_min;
-   strftime(buffer, size, "%H:%M:%S", lt);
+static void ClockMeter_setValues(Meter *this, char *buffer, int size) {
+    time_t t = time(NULL);
+    struct tm result;
+    struct tm *lt = localtime_r(&t, &result);
+    this->values[0] = lt->tm_hour * 60 + lt->tm_min;
+    strftime(buffer, size, "%H:%M:%S", lt);
 }
 
 MeterClass ClockMeter_class = {
-   .super = {
-      .extends = Class(Meter),
-      .delete = Meter_delete
-   },
-   .setValues = ClockMeter_setValues, 
-   .defaultMode = TEXT_METERMODE,
-   .total = 100.0,
-   .attributes = ClockMeter_attributes,
-   .name = "Clock",
-   .uiName = "Clock",
-   .caption = "Time: ",
+    .super = {
+        .extends = Class(Meter),
+        .delete = Meter_delete
+    },
+    .setValues = ClockMeter_setValues,
+    .defaultMode = TEXT_METERMODE,
+    .total = 100.0,
+    .attributes = ClockMeter_attributes,
+    .name = "Clock",
+    .uiName = "Clock",
+    .caption = "Time: ",
 };

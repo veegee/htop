@@ -14,16 +14,16 @@ in the source distribution for its full text.
 #include "FunctionBar.h"
 
 typedef struct TraceScreen_ {
-   Process* process;
-   Panel* display;
-   bool tracing;
+    Process *process;
+    Panel *display;
+    bool tracing;
 } TraceScreen;
 
 
-TraceScreen* TraceScreen_new(Process* process);
+TraceScreen *TraceScreen_new(Process *process);
 
-void TraceScreen_delete(TraceScreen* this);
+void TraceScreen_delete(TraceScreen *this);
 
-void TraceScreen_run(TraceScreen* this);
+void TraceScreen_run(TraceScreen *this);
 
 #endif

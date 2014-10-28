@@ -49,9 +49,9 @@ in the source distribution for its full text.
 #endif
 
 typedef struct RichString_ {
-   int chlen;
-   CharType chstr[RICHSTRING_MAXLEN+1];
-   CharType* chptr;
+    int chlen;
+    CharType chstr[RICHSTRING_MAXLEN + 1];
+    CharType *chptr;
 } RichString;
 
 
@@ -59,30 +59,30 @@ typedef struct RichString_ {
 #define MIN(a,b) ((a)<(b)?(a):(b))
 #endif
 
-#define charBytes(n) (sizeof(CharType) * (n)) 
+#define charBytes(n) (sizeof(CharType) * (n))
 
 #ifdef HAVE_LIBNCURSESW
 
-extern void RichString_setAttrn(RichString* this, int attrs, int start, int finish);
+extern void RichString_setAttrn(RichString *this, int attrs, int start, int finish);
 
-int RichString_findChar(RichString* this, char c, int start);
+int RichString_findChar(RichString *this, char c, int start);
 
 #else
 
-void RichString_setAttrn(RichString* this, int attrs, int start, int finish);
+void RichString_setAttrn(RichString *this, int attrs, int start, int finish);
 
-int RichString_findChar(RichString* this, char c, int start);
+int RichString_findChar(RichString *this, char c, int start);
 
 #endif
 
-void RichString_prune(RichString* this);
+void RichString_prune(RichString *this);
 
-void RichString_setAttr(RichString* this, int attrs);
+void RichString_setAttr(RichString *this, int attrs);
 
-void RichString_append(RichString* this, int attrs, const char* data);
+void RichString_append(RichString *this, int attrs, const char *data);
 
-void RichString_appendn(RichString* this, int attrs, const char* data, int len);
+void RichString_appendn(RichString *this, int attrs, const char *data, int len);
 
-void RichString_write(RichString* this, int attrs, const char* data);
+void RichString_write(RichString *this, int attrs, const char *data);
 
 #endif

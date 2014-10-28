@@ -16,19 +16,19 @@ in the source distribution for its full text.
 #include <stdbool.h>
 
 typedef struct Settings_ {
-   char* userSettings;
-   ProcessList* pl;
-   Header* header;
-   int colorScheme;
-   int delay;
-   bool changed;
+    char *userSettings;
+    ProcessList *pl;
+    Header *header;
+    int colorScheme;
+    int delay;
+    bool changed;
 } Settings;
 
 
-void Settings_delete(Settings* this);
+void Settings_delete(Settings *this);
 
-bool Settings_write(Settings* this);
+bool Settings_write(Settings *this);
 
-Settings* Settings_new(ProcessList* pl, Header* header, int cpuCount);
+Settings *Settings_new(ProcessList *pl, Header *header, int cpuCount);
 
 #endif

@@ -18,51 +18,51 @@ in the source distribution for its full text.
 #endif
 
 typedef struct Vector_ {
-   Object **array;
-   ObjectClass* type;
-   int arraySize;
-   int growthRate;
-   int items;
-   bool owner;
+    Object **array;
+    ObjectClass *type;
+    int arraySize;
+    int growthRate;
+    int items;
+    bool owner;
 } Vector;
 
 
-Vector* Vector_new(ObjectClass* type, bool owner, int size);
+Vector *Vector_new(ObjectClass *type, bool owner, int size);
 
-void Vector_delete(Vector* this);
+void Vector_delete(Vector *this);
 
 #ifdef DEBUG
 
-int Vector_count(Vector* this);
+int Vector_count(Vector *this);
 
 #endif
 
-void Vector_prune(Vector* this);
+void Vector_prune(Vector *this);
 
 // If I were to use only one sorting algorithm for both cases, it would probably be this one:
 /*
 
 */
 
-void Vector_quickSort(Vector* this);
+void Vector_quickSort(Vector *this);
 
-void Vector_insertionSort(Vector* this);
+void Vector_insertionSort(Vector *this);
 
-void Vector_insert(Vector* this, int idx, void* data_);
+void Vector_insert(Vector *this, int idx, void *data_);
 
-Object* Vector_take(Vector* this, int idx);
+Object *Vector_take(Vector *this, int idx);
 
-Object* Vector_remove(Vector* this, int idx);
+Object *Vector_remove(Vector *this, int idx);
 
-void Vector_moveUp(Vector* this, int idx);
+void Vector_moveUp(Vector *this, int idx);
 
-void Vector_moveDown(Vector* this, int idx);
+void Vector_moveDown(Vector *this, int idx);
 
-void Vector_set(Vector* this, int idx, void* data_);
+void Vector_set(Vector *this, int idx, void *data_);
 
 #ifdef DEBUG
 
-extern Object* Vector_get(Vector* this, int idx);
+extern Object *Vector_get(Vector *this, int idx);
 
 #else
 
@@ -70,14 +70,14 @@ extern Object* Vector_get(Vector* this, int idx);
 
 #endif
 
-extern int Vector_size(Vector* this);
+extern int Vector_size(Vector *this);
 
 /*
 
 */
 
-void Vector_add(Vector* this, void* data_);
+void Vector_add(Vector *this, void *data_);
 
-extern int Vector_indexOf(Vector* this, void* search_, Object_Compare compare);
+extern int Vector_indexOf(Vector *this, void *search_, Object_Compare compare);
 
 #endif

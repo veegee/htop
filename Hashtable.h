@@ -13,37 +13,37 @@ in the source distribution for its full text.
 
 typedef struct Hashtable_ Hashtable;
 
-typedef void(*Hashtable_PairFunction)(int, void*, void*);
+typedef void(*Hashtable_PairFunction)(int, void *, void *);
 
 typedef struct HashtableItem {
-   unsigned int key;
-   void* value;
-   struct HashtableItem* next;
+    unsigned int key;
+    void *value;
+    struct HashtableItem *next;
 } HashtableItem;
 
 struct Hashtable_ {
-   int size;
-   HashtableItem** buckets;
-   int items;
-   bool owner;
+    int size;
+    HashtableItem **buckets;
+    int items;
+    bool owner;
 };
 
 #ifdef DEBUG
 
-int Hashtable_count(Hashtable* this);
+int Hashtable_count(Hashtable *this);
 
 #endif
 
-Hashtable* Hashtable_new(int size, bool owner);
+Hashtable *Hashtable_new(int size, bool owner);
 
-void Hashtable_delete(Hashtable* this);
+void Hashtable_delete(Hashtable *this);
 
-void Hashtable_put(Hashtable* this, unsigned int key, void* value);
+void Hashtable_put(Hashtable *this, unsigned int key, void *value);
 
-void* Hashtable_remove(Hashtable* this, unsigned int key);
+void *Hashtable_remove(Hashtable *this, unsigned int key);
 
-extern void* Hashtable_get(Hashtable* this, unsigned int key);
+extern void *Hashtable_get(Hashtable *this, unsigned int key);
 
-void Hashtable_foreach(Hashtable* this, Hashtable_PairFunction f, void* userData);
+void Hashtable_foreach(Hashtable *this, Hashtable_PairFunction f, void *userData);
 
 #endif

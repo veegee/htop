@@ -13,10 +13,10 @@ in the source distribution for its full text.
 
 #define COPYRIGHT "(C) 2004-2012 Hisham Muhammad"
 
-typedef bool(*ForeachProcessFn)(Process*, size_t);
+typedef bool(*ForeachProcessFn)(Process *, size_t);
 
-void sortBy(Panel* panel, ProcessList* pl, Settings* settings, int headerHeight, FunctionBar* defaultBar, Header* header);
+void sortBy(Panel *panel, ProcessList *pl, Settings *settings, int headerHeight, FunctionBar *defaultBar, Header *header);
 
-int main(int argc, char** argv);
+int main(int argc, char **argv);
 
 #endif

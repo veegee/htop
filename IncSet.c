@@ -53,7 +53,7 @@ static void IncMode_reset(IncMode *mode) {
 }
 
 static const char *searchFunctions[] = {"Next  ", "Cancel ", " Search: ", NULL};
-static const char *searchKeys[] = {"F3", "Esc", "  "};
+static const char *searchKeys[] = {"F3:", "Esc:", "  "};
 static int searchEvents[] = {KEY_F(3), 27, ERR};
 
 static inline void IncMode_initSearch(IncMode *search) {

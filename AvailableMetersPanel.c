@@ -37,7 +37,8 @@ static void AvailableMetersPanel_delete(Object *object) {
     free(this);
 }
 
-static inline void AvailableMetersPanel_addHeader(Header *header, Panel *panel, MeterClass *type, int param, HeaderSide side) {
+static inline void AvailableMetersPanel_addHeader(Header *header, Panel *panel, MeterClass *type,
+        int param, HeaderSide side) {
     Meter *meter = (Meter *) Header_addMeter(header, type, param, side);
     Panel_add(panel, (Object *) Meter_toListItem(meter));
 }
@@ -84,7 +85,8 @@ PanelClass AvailableMetersPanel_class = {
     .eventHandler = AvailableMetersPanel_eventHandler
 };
 
-AvailableMetersPanel *AvailableMetersPanel_new(Settings *settings, Panel *leftMeters, Panel *rightMeters, ScreenManager *scr) {
+AvailableMetersPanel *AvailableMetersPanel_new(Settings *settings, Panel *leftMeters,
+        Panel *rightMeters, ScreenManager *scr) {
     AvailableMetersPanel *this = AllocThis(AvailableMetersPanel);
     Panel *super = (Panel *) this;
     Panel_init(super, 1, 1, 1, 1, Class(ListItem), true);

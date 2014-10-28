@@ -70,10 +70,12 @@ static inline void addLine(const char *line, Vector *lines, Panel *panel, const 
         Panel_add(panel, (Object *)Vector_get(lines, Vector_size(lines) - 1));
 }
 
-static inline void appendLine(const char *line, Vector *lines, Panel *panel, const char *incFilter) {
+static inline void appendLine(const char *line, Vector *lines, Panel *panel,
+                              const char *incFilter) {
     ListItem *last = (ListItem *)Vector_get(lines, Vector_size(lines) - 1);
     ListItem_append(last, line);
-    if(incFilter && Panel_get(panel, Panel_size(panel) - 1) != (Object *)last && String_contains_i(line, incFilter))
+    if(incFilter && Panel_get(panel, Panel_size(panel) - 1) != (Object *)last
+            && String_contains_i(line, incFilter))
         Panel_add(panel, (Object *)last);
 }
 

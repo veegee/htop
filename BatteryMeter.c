@@ -50,7 +50,8 @@ static unsigned long int parseUevent(FILE *file, const char *key) {
     return dValue;
 }
 
-static unsigned long int parseBatInfo(const char *fileName, const unsigned short int lineNum, const unsigned short int wordNum) {
+static unsigned long int parseBatInfo(const char *fileName, const unsigned short int lineNum,
+                                      const unsigned short int wordNum) {
     const char batteryPath[] = PROCDIR "/acpi/battery/";
     DIR *batteryDir = opendir(batteryPath);
     if(!batteryDir)

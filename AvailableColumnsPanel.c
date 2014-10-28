@@ -69,7 +69,8 @@ PanelClass AvailableColumnsPanel_class = {
     .eventHandler = AvailableColumnsPanel_eventHandler
 };
 
-AvailableColumnsPanel *AvailableColumnsPanel_new(Settings *settings, Panel *columns, ScreenManager *scr) {
+AvailableColumnsPanel *AvailableColumnsPanel_new(Settings *settings, Panel *columns,
+        ScreenManager *scr) {
     AvailableColumnsPanel *this = AllocThis(AvailableColumnsPanel);
     Panel *super = (Panel *) this;
     Panel_init(super, 1, 1, 1, 1, Class(ListItem), true);

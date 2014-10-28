@@ -96,7 +96,8 @@ PanelClass MetersPanel_class = {
     .eventHandler = MetersPanel_eventHandler
 };
 
-MetersPanel *MetersPanel_new(Settings *settings, const char *header, Vector *meters, ScreenManager *scr) {
+MetersPanel *MetersPanel_new(Settings *settings, const char *header, Vector *meters,
+                             ScreenManager *scr) {
     MetersPanel *this = AllocThis(MetersPanel);
     Panel *super = (Panel *) this;
     Panel_init(super, 1, 1, 1, 1, Class(ListItem), true);

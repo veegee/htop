@@ -140,7 +140,8 @@ static void OpenFilesScreen_scan(OpenFilesScreen *this, Vector *lines, IncSet *i
     Panel_prune(panel);
     OpenFiles_ProcessData *pdata = OpenFilesScreen_getProcessData(this->pid);
     if(pdata->error == 127) {
-        addLine("Could not execute 'lsof'. Please make sure it is available in your $PATH.", lines, panel, IncSet_filter(inc));
+        addLine("Could not execute 'lsof'. Please make sure it is available in your $PATH.", lines, panel,
+                IncSet_filter(inc));
     } else if(pdata->error == 1) {
         addLine("Failed listing open files.", lines, panel, IncSet_filter(inc));
     } else {

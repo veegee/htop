@@ -45,7 +45,8 @@ IncSet *IncSet_new(FunctionBar *bar);
 
 void IncSet_delete(IncSet *this);
 
-bool IncSet_handleKey(IncSet *this, int ch, Panel *panel, IncMode_GetPanelValue getPanelValue, Vector *lines);
+bool IncSet_handleKey(IncSet *this, int ch, Panel *panel, IncMode_GetPanelValue getPanelValue,
+                      Vector *lines);
 
 const char *IncSet_getListItemValue(Panel *panel, int i);
 

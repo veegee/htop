@@ -85,7 +85,8 @@ static inline void RichString_setLen(RichString *this, int len) {
 
 #ifdef HAVE_LIBNCURSESW
 
-static inline void RichString_writeFrom(RichString *this, int attrs, const char *data_c, int from, int len) {
+static inline void RichString_writeFrom(RichString *this, int attrs, const char *data_c, int from,
+                                        int len) {
     wchar_t data[len + 1];
     len = mbstowcs(data, data_c, len);
     if(len < 0)
@@ -121,7 +122,8 @@ int RichString_findChar(RichString *this, char c, int start) {
 
 #else
 
-static inline void RichString_writeFrom(RichString *this, int attrs, const char *data_c, int from, int len) {
+static inline void RichString_writeFrom(RichString *this, int attrs, const char *data_c, int from,
+                                        int len) {
     int newLen = from + len;
     RichString_setLen(this, newLen);
     for(int i = from, j = 0; i < newLen; i++, j++)

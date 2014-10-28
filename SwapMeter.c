@@ -38,7 +38,8 @@ static void SwapMeter_setValues(Meter *this, char *buffer, int len) {
     this->total = this->pl->totalSwap;
     this->values[0] = usedSwap;
 
-    snprintf(buffer, len, "%ld/%ldMB", (long int) usedSwap / MEGABYTE, (long int) this->total / MEGABYTE);
+    snprintf(buffer, len, "%ld/%ldMB", (long int) usedSwap / MEGABYTE,
+             (long int) this->total / MEGABYTE);
 }
 
 static void SwapMeter_display(Object *cast, RichString *out) {

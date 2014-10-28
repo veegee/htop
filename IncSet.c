@@ -132,7 +132,8 @@ static void search(IncMode *mode, Panel *panel, IncMode_GetPanelValue getPanelVa
         FunctionBar_drawAttr(mode->bar, mode->buffer, CRT_colors[FAILED_SEARCH]);
 }
 
-bool IncSet_handleKey(IncSet *this, int ch, Panel *panel, IncMode_GetPanelValue getPanelValue, Vector *lines) {
+bool IncSet_handleKey(IncSet *this, int ch, Panel *panel, IncMode_GetPanelValue getPanelValue,
+                      Vector *lines) {
     if(ch == ERR)
         return true;
     IncMode *mode = this->active;

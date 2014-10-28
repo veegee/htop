@@ -339,7 +339,8 @@ int ProcessList_size(ProcessList *this) {
     return (Vector_size(this->processes));
 }
 
-static void ProcessList_buildTree(ProcessList *this, pid_t pid, int level, int indent, int direction, bool show) {
+static void ProcessList_buildTree(ProcessList *this, pid_t pid, int level, int indent,
+                                  int direction, bool show) {
     Vector *children = Vector_new(Class(Process), false, DEFAULT_SIZE);
 
     for(int i = Vector_size(this->processes) - 1; i >= 0; i--) {
@@ -362,7 +363,8 @@ static void ProcessList_buildTree(ProcessList *this, pid_t pid, int level, int i
         assert(this->processes2->items == s + 1);
         (void)s;
         int nextIndent = indent | (1 << level);
-        ProcessList_buildTree(this, process->pid, level + 1, (i < size - 1) ? nextIndent : indent, direction, show ? process->showChildren : false);
+        ProcessList_buildTree(this, process->pid, level + 1, (i < size - 1) ? nextIndent : indent,
+                              direction, show ? process->showChildren : false);
         if(i == size - 1)
             process->indent = -nextIndent;
         else
@@ -412,7 +414,8 @@ void ProcessList_sort(ProcessList *this) {
     }
 }
 
-static bool ProcessList_readStatFile(Process *process, const char *dirname, const char *name, char *command) {
+static bool ProcessList_readStatFile(Process *process, const char *dirname, const char *name,
+                                     char *command) {
     char filename[MAX_NAME + 1];
     snprintf(filename, MAX_NAME, "%s/%s/stat", dirname, name);
     int fd = open(filename, O_RDONLY);
@@ -485,7 +488,8 @@ static bool ProcessList_readStatFile(Process *process, const char *dirname, cons
     return true;
 }
 
-static bool ProcessList_statProcessDir(Process *process, const char *dirname, char *name, time_t curTime) {
+static bool ProcessList_statProcessDir(Process *process, const char *dirname, char *name,
+                                       time_t curTime) {
     char filename[MAX_NAME + 1];
     filename[MAX_NAME] = '\0';
 
@@ -507,7 +511,8 @@ static bool ProcessList_statProcessDir(Process *process, const char *dirname, ch
 
 #ifdef HAVE_TASKSTATS
 
-static void ProcessList_readIoFile(Process *process, const char *dirname, char *name, unsigned long long now) {
+static void ProcessList_readIoFile(Process *process, const char *dirname, char *name,
+                                   unsigned long long now) {
     char filename[MAX_NAME + 1];
     filename[MAX_NAME] = '\0';
 
@@ -533,7 +538,8 @@ static void ProcessList_readIoFile(Process *process, const char *dirname, char *
             else if(strncmp(line + 1, "ead_bytes: ", 11) == 0) {
                 process->io_read_bytes = strtoull(line + 12, NULL, 10);
                 process->io_rate_read_bps =
-                    ((double)(process->io_read_bytes - last_read)) / (((double)(now - process->io_rate_read_time)) / 1000);
+                    ((double)(process->io_read_bytes - last_read)) / (((double)(now - process->io_rate_read_time)) /
+                            1000);
                 process->io_rate_read_time = now;
             }
             break;
@@ -543,7 +549,8 @@ static void ProcessList_readIoFile(Process *process, const char *dirname, char *
             else if(strncmp(line + 1, "rite_bytes: ", 12) == 0) {
                 process->io_write_bytes = strtoull(line + 13, NULL, 10);
                 process->io_rate_write_bps =
-                    ((double)(process->io_write_bytes - last_write)) / (((double)(now - process->io_rate_write_time)) / 1000);
+                    ((double)(process->io_write_bytes - last_write)) / (((double)(now - process->io_rate_write_time)) /
+                            1000);
                 process->io_rate_write_time = now;
             }
             break;
@@ -594,7 +601,8 @@ static bool ProcessList_readStatmFile(Process *process, const char *dirname, con
 
 #ifdef HAVE_OPENVZ
 
-static void ProcessList_readOpenVZData(ProcessList *this, Process *process, const char *dirname, const char *name) {
+static void ProcessList_readOpenVZData(ProcessList *this, Process *process, const char *dirname,
+                                       const char *name) {
     if((!(this->flags & PROCESS_FLAG_OPENVZ)) || (access("/proc/vz", R_OK) != 0)) {
         process->vpid = process->pid;
         process->ctid = 0;
@@ -738,7 +746,8 @@ static bool ProcessList_readCmdlineFile(Process *process, const char *dirname, c
 }
 
 
-static bool ProcessList_processEntries(ProcessList *this, const char *dirname, Process *parent, double period, struct timeval tv) {
+static bool ProcessList_processEntries(ProcessList *this, const char *dirname, Process *parent,
+                                       double period, struct timeval tv) {
     DIR *dir;
     struct dirent *entry;
 
@@ -801,7 +810,8 @@ static bool ProcessList_processEntries(ProcessList *this, const char *dirname, P
         if(! ProcessList_readStatmFile(process, dirname, name))
             goto errorReadingProcess;
 
-        process->show = !((hideKernelThreads && Process_isKernelThread(process)) || (hideUserlandThreads && Process_isUserlandThread(process)));
+        process->show = !((hideKernelThreads && Process_isKernelThread(process)) || (hideUserlandThreads
+                          && Process_isUserlandThread(process)));
 
         char command[MAX_NAME + 1];
         unsigned long long int lasttimes = (process->utime + process->stime);
@@ -954,9 +964,12 @@ void ProcessList_scan(ProcessList *this) {
         // The rest will remain at zero.
         fgets(buffer, 255, file);
         if(i == 0)
-            sscanf(buffer, "cpu  %16llu %16llu %16llu %16llu %16llu %16llu %16llu %16llu %16llu %16llu", &usertime, &nicetime, &systemtime, &idletime, &ioWait, &irq, &softIrq, &steal, &guest, &guestnice);
+            sscanf(buffer, "cpu  %16llu %16llu %16llu %16llu %16llu %16llu %16llu %16llu %16llu %16llu",
+                   &usertime, &nicetime, &systemtime, &idletime, &ioWait, &irq, &softIrq, &steal, &guest, &guestnice);
         else {
-            sscanf(buffer, "cpu%4d %16llu %16llu %16llu %16llu %16llu %16llu %16llu %16llu %16llu %16llu", &cpuid, &usertime, &nicetime, &systemtime, &idletime, &ioWait, &irq, &softIrq, &steal, &guest, &guestnice);
+            sscanf(buffer, "cpu%4d %16llu %16llu %16llu %16llu %16llu %16llu %16llu %16llu %16llu %16llu",
+                   &cpuid, &usertime, &nicetime, &systemtime, &idletime, &ioWait, &irq, &softIrq, &steal, &guest,
+                   &guestnice);
             assert(cpuid == i - 1);
         }
         // Guest time is already accounted in usertime
@@ -1058,7 +1071,8 @@ void ProcessList_expandTree(ProcessList *this) {
     }
 }
 
-void ProcessList_rebuildPanel(ProcessList *this, bool flags, int following, bool userOnly, uid_t userId, const char *incFilter) {
+void ProcessList_rebuildPanel(ProcessList *this, bool flags, int following, bool userOnly,
+                              uid_t userId, const char *incFilter) {
     if(!flags) {
         following = this->following;
         userOnly = this->userOnly;

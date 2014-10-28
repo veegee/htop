@@ -43,7 +43,8 @@ typedef struct ScreenManager_ {
 
 }*/
 
-ScreenManager *ScreenManager_new(int x1, int y1, int x2, int y2, Orientation orientation, const Header *header, bool owner) {
+ScreenManager *ScreenManager_new(int x1, int y1, int x2, int y2, Orientation orientation,
+                                 const Header *header, bool owner) {
     ScreenManager *this;
     this = malloc(sizeof(ScreenManager));
     this->x1 = x1;

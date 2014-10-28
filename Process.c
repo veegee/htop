@@ -459,7 +459,8 @@ static inline void Process_writeCommand(Process *this, int attr, int baseattr, R
     }
 }
 
-static inline void Process_outputRate(RichString *str, int attr, char *buffer, int n, double rate, int coloring) {
+static inline void Process_outputRate(RichString *str, int attr, char *buffer, int n, double rate,
+                                      int coloring) {
     rate = rate / 1024;
     if(rate < 0.01)
         snprintf(buffer, n, "    0 ");
@@ -551,8 +552,10 @@ static void Process_writeField(Process *this, RichString *str, ProcessField fiel
                 buf += written;
                 n -= written;
             }
-            const char *draw = treeStr[lastItem ? (this->pl->direction == 1 ? TREE_STR_BEND : TREE_STR_TEND) : TREE_STR_RTEE];
-            snprintf(buf, n, "%s%s ", draw, this->showChildren ? treeStr[TREE_STR_SHUT] : treeStr[TREE_STR_OPEN]);
+            const char *draw = treeStr[lastItem ? (this->pl->direction == 1 ? TREE_STR_BEND : TREE_STR_TEND) :
+                                       TREE_STR_RTEE];
+            snprintf(buf, n, "%s%s ", draw,
+                     this->showChildren ? treeStr[TREE_STR_SHUT] : treeStr[TREE_STR_OPEN]);
             RichString_append(str, CRT_colors[PROCESS_TREE], buffer);
             Process_writeCommand(this, attr, baseattr, str);
             return;
@@ -700,7 +703,8 @@ static void Process_writeField(Process *this, RichString *str, ProcessField fiel
         Process_outputRate(str, attr, buffer, n, this->io_rate_write_bps, coloring);
         return;
     case IO_RATE:
-        Process_outputRate(str, attr, buffer, n, this->io_rate_read_bps + this->io_rate_write_bps, coloring);
+        Process_outputRate(str, attr, buffer, n, this->io_rate_read_bps + this->io_rate_write_bps,
+                           coloring);
         return;
         #endif
         #ifdef HAVE_CGROUP
@@ -1004,7 +1008,8 @@ long Process_compare(const void *v1, const void *v2) {
         diff = p2->io_rate_write_bps - p1->io_rate_write_bps;
         goto test_diff;
     case IO_RATE:
-        diff = (p2->io_rate_read_bps + p2->io_rate_write_bps) - (p1->io_rate_read_bps + p1->io_rate_write_bps);
+        diff = (p2->io_rate_read_bps + p2->io_rate_write_bps) - (p1->io_rate_read_bps +
+                p1->io_rate_write_bps);
         goto test_diff;
         #endif
         #ifdef HAVE_CGROUP

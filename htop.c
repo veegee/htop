@@ -215,7 +215,8 @@ static const char *CategoriesFunctions[] = {"      ", "      ", "      ", "     
 static void Setup_run(Settings *settings, const Header *header) {
     ScreenManager *scr = ScreenManager_new(0, header->height, 0, -1, HORIZONTAL, header, true);
     CategoriesPanel *panelCategories = CategoriesPanel_new(settings, scr);
-    ScreenManager_add(scr, (Panel *) panelCategories, FunctionBar_new(CategoriesFunctions, NULL, NULL), 16);
+    ScreenManager_add(scr, (Panel *) panelCategories, FunctionBar_new(CategoriesFunctions, NULL, NULL),
+                      16);
     CategoriesPanel_makeMetersPage(panelCategories);
     Panel *panelFocus;
     int ch;
@@ -260,7 +261,8 @@ static int selectedPid(Panel *panel) {
     return -1;
 }
 
-static Object *pickFromVector(Panel *panel, Panel *list, int x, int y, const char **keyLabels, FunctionBar *prevBar, Header *header) {
+static Object *pickFromVector(Panel *panel, Panel *list, int x, int y, const char **keyLabels,
+                              FunctionBar *prevBar, Header *header) {
     const char *fuKeys[] = {"Enter", "Esc", NULL};
     int fuEvents[] = {13, 27};
     ScreenManager *scr = ScreenManager_new(0, y, 0, -1, HORIZONTAL, header, false);
@@ -323,7 +325,8 @@ static void setTreeView(ProcessList *pl, FunctionBar *fuBar, bool mode) {
     pl->treeView = mode;
 }
 
-static inline void setSortKey(ProcessList *pl, FunctionBar *fuBar, ProcessField sortKey, Panel *panel, Settings *settings) {
+static inline void setSortKey(ProcessList *pl, FunctionBar *fuBar, ProcessField sortKey,
+                              Panel *panel, Settings *settings) {
     pl->sortKey = sortKey;
     pl->direction = 1;
     setTreeView(pl, fuBar, false);
@@ -356,7 +359,8 @@ static bool expandCollapse(Panel *panel) {
     return true;
 }
 
-void sortBy(Panel *panel, ProcessList *pl, Settings *settings, int headerHeight, FunctionBar *defaultBar, Header *header) {
+void sortBy(Panel *panel, ProcessList *pl, Settings *settings, int headerHeight,
+            FunctionBar *defaultBar, Header *header) {
     Panel *sortPanel = Panel_new(0, 0, 0, 0, true, Class(ListItem));
     Panel_setHeader(sortPanel, "Sort by");
     const char *fuFunctions[] = {"Sort  ", "Cancel ", NULL};
@@ -368,7 +372,8 @@ void sortBy(Panel *panel, ProcessList *pl, Settings *settings, int headerHeight,
             Panel_setSelected(sortPanel, i);
         free(name);
     }
-    ListItem *field = (ListItem *) pickFromVector(panel, sortPanel, 15, headerHeight, fuFunctions, defaultBar, header);
+    ListItem *field = (ListItem *) pickFromVector(panel, sortPanel, 15, headerHeight, fuFunctions,
+                      defaultBar, header);
     if(field) {
         settings->changed = true;
         setSortKey(pl, defaultBar, field->key, panel, settings);
@@ -793,7 +798,8 @@ int main(int argc, char **argv) {
             ListItem *allUsers = ListItem_new("All users", -1);
             Panel_insert(usersPanel, 0, (Object *) allUsers);
             const char *fuFunctions[] = {"Show    ", "Cancel ", NULL};
-            ListItem *picked = (ListItem *) pickFromVector(panel, usersPanel, 20, headerHeight, fuFunctions, defaultBar, header);
+            ListItem *picked = (ListItem *) pickFromVector(panel, usersPanel, 20, headerHeight, fuFunctions,
+                               defaultBar, header);
             if(picked) {
                 if(picked == allUsers) {
                     userOnly = false;
@@ -817,7 +823,8 @@ int main(int argc, char **argv) {
         case 'k': {
             Panel *signalsPanel = (Panel *) SignalsPanel_new();
             const char *fuFunctions[] = {"Send  ", "Cancel ", NULL};
-            ListItem *sgn = (ListItem *) pickFromVector(panel, signalsPanel, 15, headerHeight, fuFunctions, defaultBar, header);
+            ListItem *sgn = (ListItem *) pickFromVector(panel, signalsPanel, 15, headerHeight, fuFunctions,
+                            defaultBar, header);
             if(sgn) {
                 if(sgn->key != 0) {
                     Panel_setHeader(panel, "Sending...");

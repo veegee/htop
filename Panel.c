@@ -435,7 +435,9 @@ HandlerResult Panel_selectByTyping(Panel *this, int ch) {
             this->eventHandlerBuffer[len] = ch;
             this->eventHandlerBuffer[len + 1] = '\0';
         }
-        for(int try = 0; try < 2; try++) {
+        for(int try = 0;
+                    try < 2;
+                        try++) {
                         len = strlen(this->eventHandlerBuffer);
                         for(int i = 0; i < size; i++) {
                             char *cur = ((ListItem *) Panel_get(this, i))->value;

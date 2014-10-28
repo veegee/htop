@@ -38,8 +38,6 @@ in the source distribution for its full text.
 #include <sys/time.h>
 #include <time.h>
 
-//#link m
-
 #define COPYRIGHT "(C) 2004-2012 Hisham Muhammad"
 
 static void printVersionFlag() {

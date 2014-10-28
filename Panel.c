@@ -1,10 +1,3 @@
-/*
-htop - Panel.c
-(C) 2004-2011 Hisham H. Muhammad
-Released under the GNU GPL, see the COPYING file
-in the source distribution for its full text.
-*/
-
 #include "Panel.h"
 
 #include "CRT.h"
@@ -18,50 +11,6 @@ in the source distribution for its full text.
 #include <ctype.h>
 #include <string.h>
 #include <assert.h>
-
-//#link curses
-
-/*{
-#include "Object.h"
-#include "Vector.h"
-
-typedef struct Panel_ Panel;
-
-typedef enum HandlerResult_ {
-   HANDLED,
-   IGNORED,
-   BREAK_LOOP
-} HandlerResult;
-
-#define EVENT_SETSELECTED -1
-
-typedef HandlerResult(*Panel_EventHandler)(Panel*, int);
-
-typedef struct PanelClass_ {
-   const ObjectClass super;
-   const Panel_EventHandler eventHandler;
-} PanelClass;
-
-#define As_Panel(this_)                ((PanelClass*)((this_)->super.klass))
-#define Panel_eventHandlerFn(this_)    As_Panel(this_)->eventHandler
-#define Panel_eventHandler(this_, ev_) As_Panel(this_)->eventHandler((Panel*)(this_), ev_)
-
-struct Panel_ {
-   Object super;
-   PanelClass* class;
-   int x, y, w, h;
-   WINDOW* window;
-   Vector* items;
-   int selected;
-   int oldSelected;
-   char* eventHandlerBuffer;
-   int scrollV;
-   short scrollH;
-   bool needsRedraw;
-   RichString header;
-};
-
-}*/
 
 #ifndef MIN
 #define MIN(a,b) ((a)<(b)?(a):(b))

@@ -167,8 +167,8 @@ void CRT_setColors(int colorScheme) {
     CRT_colors[RESET_COLOR] = A_NORMAL | ColorPair(Reset, Reset);
     CRT_colors[DEFAULT_COLOR] = A_NORMAL | ColorPair(Reset, Reset);
 
-    CRT_colors[FUNCTION_BAR] = ColorPair(Yellow, Reset);
-    CRT_colors[FUNCTION_KEY] = ColorPair(Red, Reset);
+    CRT_colors[FUNCTION_BAR] = ColorPair(Reset, Reset);
+    CRT_colors[FUNCTION_KEY] = A_BOLD | ColorPair(Green, Reset);
 
     CRT_colors[PANEL_HEADER_FOCUS] = ColorPair(Black, Blue);
     CRT_colors[PANEL_HEADER_UNFOCUS] = A_BLINK | ColorPair(Black, Green);

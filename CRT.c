@@ -24,21 +24,13 @@ in the source distribution for its full text.
 // TODO: centralize these in Settings.
 
 static bool CRT_hasColors;
-
 static int CRT_delay = 0;
-
 int CRT_colorScheme = 0;
-
 bool CRT_utf8 = false;
-
 int CRT_colors[LAST_COLORELEMENT] = { 0 };
-
 int CRT_cursorX = 0;
-
 int CRT_scrollHAmount = 5;
-
 char *CRT_termType;
-
 void *backtraceArray[128];
 
 static void CRT_handleSIGSEGV(int sgn) {
